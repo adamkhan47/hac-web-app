@@ -16,9 +16,8 @@ if (LISTENING === "local") {
 else if (LISTENING === "all") {
     LISTENING = '0.0.0.0'} 
 // #endregion 
+
 app.use(express.static(path.join(__dirname, "public")));
-
-
 app.listen(PORT, LISTENING, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

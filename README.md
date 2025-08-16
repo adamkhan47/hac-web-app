@@ -2,7 +2,7 @@
 hac web app will be my first ever frontend and backend app that preferably is self hosted to get your grades
 
 # must read
-- this app stores login in plaintext, 
+- this app stores login in plaintext, no end to end encryption
 
 # how to install
 - need node js
