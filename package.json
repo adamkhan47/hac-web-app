@@ -1,0 +1,12 @@
+{
+  "name": "hac-web-app",
+  "version": "1.0.0",
+  "description": "hac web app will be my first ever frontend and backend app that preferably is self hosted to get your grades",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
