@@ -1,6 +1,9 @@
 # hac-web-app
 hac web app will be my first ever frontend and backend app that preferably is self hosted to get your grades
 
+# must read
+- this app stores login in plaintext, 
+
 # how to install
 - need node js
 clone repo, then run npm install and node server.js
@@ -12,3 +15,5 @@ clone repo, then run npm install and node server.js
 - able to talk to any hac api you want
 - integration with my what if grade calculator
 - more coming soon
+- multiple user support
+- encryption possibly
