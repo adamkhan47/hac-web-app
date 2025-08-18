@@ -2,8 +2,9 @@ let user = "";
 let password = "";
 window.onload = function() {
     try {
-        user = localStorage.getItem(login)[0];
-        password = localStorage.getItem(login)[1];
+        let data = JSON.parse(localStorage.getItem("login"));
+        user = data[0];
+        password = data[1];
     }
     catch(error) {
        login(); 
@@ -16,6 +17,6 @@ function login() {
     if (user === null || password === null) {}
     else {
         let data = [user,password];
-        localStorage.setItem("login", data);
+        localStorage.setItem("login", JSON.stringify(data));
     }
 }
