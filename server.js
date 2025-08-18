@@ -20,4 +20,5 @@ else if (LISTENING === "all") {
 app.use(express.static(path.join(__dirname, "public")));
 app.listen(PORT, LISTENING, () => {
   console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Listening on ${LISTENING}`);
 });
