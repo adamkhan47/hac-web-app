@@ -19,8 +19,9 @@ else if (LISTENING === "all") {
 // #endregion 
 
 // #region Endpoints start here
-app.get('/grades', (req, res) => {
-  res.send('f'); // Send JSON response
+app.get('/grades', async (req, res) => {
+  let arrayThing = req.query;
+  res.send(await scrapeGrades(arrayThing.username, arrayThing.password));
 });
 //#endregion
 
