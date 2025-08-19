@@ -1,7 +1,14 @@
 const puppeteer = require('puppeteer');
 
-async function scrapeGrades(username, password) {
-    const browser = await puppeteer.launch({ headless: true });
+async function scrapeGrades(username, password, environment) {
+    let browser;
+    if (environment === "user") {
+        browser = await puppeteer.launch({ headless: true });}
+    else if (environment === "dev") {
+        browser = await puppeteer.launch({ headless: false });}
+    else {
+        throw new Error("Environment in config.yaml not setup right.");
+    }
     const page = await browser.newPage();
     await page.goto('https://hac.mckinneyisd.net');
     await page.waitForSelector('#LogOnDetails_UserName');
@@ -20,8 +27,15 @@ async function scrapeGrades(username, password) {
     await browser.close();    
     return html;
 }
-async function scrapeSchedule(username, password) {
-    const browser = await puppeteer.launch({ headless: true });
+async function scrapeSchedule(username, password, environment) {
+    let browser;
+    if (environment === "user") {
+        browser = await puppeteer.launch({ headless: true });}
+    else if (environment === "dev") {
+        browser = await puppeteer.launch({ headless: false });}
+    else {
+        throw new Error("Environment in config.yaml not setup right.");
+    }
     const page = await browser.newPage();
     await page.goto('https://hac.mckinneyisd.net');
     await page.waitForSelector('#LogOnDetails_UserName');

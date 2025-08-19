@@ -6,3 +6,5 @@ listen: "local"
 # all is if you want every device to be able to run this app
 
 alerts: true # better console.logs
+
+environment: "dev" # use dev if building and use "user" for normal use

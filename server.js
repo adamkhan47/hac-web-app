@@ -17,18 +17,19 @@ if (LISTENING === "local") {
 else if (LISTENING === "all") {
     LISTENING = '0.0.0.0'} 
 const betterConsole = config.alerts;
+let environment = config.environment;
 
 // #endregion 
 
 // #region Endpoints start here
 app.get('/grades', async (req, res) => {
   let arrayThing = req.query;
-  res.send(await scrapeGrades(arrayThing.username, arrayThing.password));
+  res.send(await scrapeGrades(arrayThing.username, arrayThing.password, environment));
   if (betterConsole) {console.log("Sent grades...");}
 });
 app.get('/schedule', async (req, res) => {
   let arrayThing = req.query;
-  res.send(await scrapeSchedule(arrayThing.username, arrayThing.password));
+  res.send(await scrapeSchedule(arrayThing.username, arrayThing.password, environment));
   if (betterConsole) { console.log("Sent schedule..");}
 });
 //#endregion
