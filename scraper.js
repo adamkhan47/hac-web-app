@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 
 async function scrapeGrades(username, password) {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({ headless: true });
     const page = await browser.newPage();
     await page.goto('https://hac.mckinneyisd.net');
     await page.waitForSelector('#LogOnDetails_UserName');
@@ -14,6 +14,7 @@ async function scrapeGrades(username, password) {
     page.click('#login');
     await page.waitForSelector('#hac-Classes');
     const page2 = await browser.newPage();
+    await page.close();
     await page2.goto('https://hac.mckinneyisd.net/HomeAccess/Content/Student/Assignments.aspx');
     const html = await page2.content();
     await browser.close();    
