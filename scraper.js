@@ -1,10 +1,22 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
-(async () => {
+async function scrapeGrades(username, password) {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
     await page.goto('https://hac.mckinneyisd.net');
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await page.waitForSelector('#LogOnDetails_UserName');
     // above was written by ai. below is hand written
-    // page.type('#LogOnDetails_UserName',);
-})();
+    
+    page.type('#LogOnDetails_UserName', user);
+    await new Promise(resolve => setTimeout(resolve, 50));
+    page.type('#LogOnDetails_Password', password);
+    await page.waitForSelector('#login');
+    page.click('#login');
+    await page.waitForSelector('#hac-Classes');
+    const page2 = await browser.newPage();
+    await page2.goto('https://hac.mckinneyisd.net/HomeAccess/Content/Student/Assignments.aspx');
+    const html = await page2.content();
+    fs.writeFileSync(username + '.txt', html);
+    await browser.close();    
+}
