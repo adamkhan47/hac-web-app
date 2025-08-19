@@ -14,12 +14,22 @@ async function scrapeGrades(username, password, environment) {
     await page.waitForSelector('#LogOnDetails_UserName');
     // above was written by ai. below is hand written
     
-    page.type('#LogOnDetails_UserName', username);
-    await new Promise(resolve => setTimeout(resolve, 50));
-    page.type('#LogOnDetails_Password', password);
-    await page.waitForSelector('#login');
-    page.click('#login');
-    await page.waitForSelector('#hac-Classes');
+    try {
+        page.type('#LogOnDetails_UserName', username);
+        await new Promise(resolve => setTimeout(resolve, 50));
+        page.type('#LogOnDetails_Password', password);
+        await page.waitForSelector('#login');
+        page.click('#login');
+    }
+    catch(error) {
+        await browser.close()
+        return "Invalid sending request";
+    }
+    await page.waitForSelector('#hac-Classes, .validation-summary-errors');
+    if (await page.$('.validation-summary-errors')) {
+        await browser.close()
+        return "Invalid login";
+    }
     const page2 = await browser.newPage();
     await page.close();
     await page2.goto('https://hac.mckinneyisd.net/HomeAccess/Content/Student/Assignments.aspx');
@@ -40,13 +50,22 @@ async function scrapeSchedule(username, password, environment) {
     await page.goto('https://hac.mckinneyisd.net');
     await page.waitForSelector('#LogOnDetails_UserName');
     // above was written by ai. below is hand written
-    
-    page.type('#LogOnDetails_UserName', username);
-    await new Promise(resolve => setTimeout(resolve, 50));
-    page.type('#LogOnDetails_Password', password);
-    await page.waitForSelector('#login');
-    page.click('#login');
-    await page.waitForSelector('#hac-Classes');
+    try {
+        page.type('#LogOnDetails_UserName', username);
+        await new Promise(resolve => setTimeout(resolve, 50));
+        page.type('#LogOnDetails_Password', password);
+        await page.waitForSelector('#login');
+        page.click('#login');
+    }
+    catch(error) {
+        await browser.close()
+        return "Invalid sending request";
+    }
+    await page.waitForSelector('#hac-Classes, .validation-summary-errors');
+    if (await page.$('.validation-summary-errors')) {
+        await browser.close()
+        return "Invalid login";
+    }
     const page2 = await browser.newPage();
     await page.close();
     await page2.goto('https://hac.mckinneyisd.net/HomeAccess/Content/Student/Classes.aspx');
