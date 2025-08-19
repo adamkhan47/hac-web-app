@@ -4,6 +4,7 @@ const app = express();
 const yaml = require('js-yaml');
 const fs = require('fs');
 const { scrapeGrades, scrapeSchedule } = require('./scraper.js');
+const { error } = require("console");
 
 
 // #region config.yaml reading here
@@ -24,13 +25,21 @@ let environment = config.environment;
 // #region Endpoints start here
 app.get('/grades', async (req, res) => {
   let arrayThing = req.query;
-  res.send(await scrapeGrades(arrayThing.username, arrayThing.password, environment));
-  if (betterConsole) {console.log("Sent grades...");}
+  try {
+    if (!arrayThing.username || !arrayThing.password || !environment) {throw new Error("crash.");}
+    res.send(await scrapeGrades(arrayThing.username, arrayThing.password, environment));
+    if (betterConsole) {console.log("Sent grades...");}
+  }
+  catch (error) {res.send("Not correct way to send data")};
 });
 app.get('/schedule', async (req, res) => {
   let arrayThing = req.query;
-  res.send(await scrapeSchedule(arrayThing.username, arrayThing.password, environment));
-  if (betterConsole) { console.log("Sent schedule..");}
+  try {
+    if (!arrayThing.username || !arrayThing.password || !environment) {throw new Error("crash.");}
+    res.send(await scrapeSchedule(arrayThing.username, arrayThing.password, environment));
+    if (betterConsole) { console.log("Sent schedule..");}
+  }
+  catch (error) {res.send("Not correct way to send data")};
 });
 //#endregion
 
