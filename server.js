@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const yaml = require('js-yaml');
 const fs = require('fs');
+const { scrapeGrades } = require('./scraper.js');
 
 
 // #region config.yaml reading here
@@ -16,6 +17,12 @@ if (LISTENING === "local") {
 else if (LISTENING === "all") {
     LISTENING = '0.0.0.0'} 
 // #endregion 
+
+// #region Endpoints start here
+app.get('/grades', (req, res) => {
+  res.send('f'); // Send JSON response
+});
+//#endregion
 
 app.use(express.static(path.join(__dirname, "public")));
 app.listen(PORT, LISTENING, () => {
