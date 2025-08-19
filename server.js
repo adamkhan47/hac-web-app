@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const yaml = require('js-yaml');
 const fs = require('fs');
-const { scrapeGrades } = require('./scraper.js');
+const { scrapeGrades, scrapeSchedule } = require('./scraper.js');
 
 
 // #region config.yaml reading here
@@ -17,15 +17,19 @@ if (LISTENING === "local") {
 else if (LISTENING === "all") {
     LISTENING = '0.0.0.0'} 
 const betterConsole = config.alerts;
+
 // #endregion 
 
 // #region Endpoints start here
 app.get('/grades', async (req, res) => {
   let arrayThing = req.query;
   res.send(await scrapeGrades(arrayThing.username, arrayThing.password));
-  if (betterConsole) {
-    console.log("Sent grades...");
-  }
+  if (betterConsole) {console.log("Sent grades...");}
+});
+app.get('/schedule', async (req, res) => {
+  let arrayThing = req.query;
+  res.send(await scrapeSchedule(arrayThing.username, arrayThing.password));
+  if (betterConsole) { console.log("Sent schedule..");}
 });
 //#endregion
 

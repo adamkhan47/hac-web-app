@@ -22,8 +22,13 @@ function login() {
     localStorage.setItem("login", JSON.stringify(data));
     document.getElementById("user").innerHTML = user;
 }
-async function retrieveData() {
+async function retrieveGradeData() {
     const res = await fetch('/grades?username='+user+'&password='+password);
+    const data = await res.text();
+    document.getElementById("gradeText").innerHTML = data;
+}
+async function retrieveScheduleData() {
+    const res = await fetch('/schedule?username='+user+'&password='+password);
     const data = await res.text();
     document.getElementById("gradeText").innerHTML = data;
 }
