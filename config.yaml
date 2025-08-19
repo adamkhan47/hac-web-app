@@ -4,3 +4,5 @@ listen: "local"
 # options: all, local
 # local is for if you only want this app to work on the machine its run on
 # all is if you want every device to be able to run this app
+
+alerts: true # better console.logs

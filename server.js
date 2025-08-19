@@ -16,12 +16,16 @@ if (LISTENING === "local") {
     LISTENING = '127.0.0.1';}
 else if (LISTENING === "all") {
     LISTENING = '0.0.0.0'} 
+const betterConsole = config.alerts;
 // #endregion 
 
 // #region Endpoints start here
 app.get('/grades', async (req, res) => {
   let arrayThing = req.query;
   res.send(await scrapeGrades(arrayThing.username, arrayThing.password));
+  if (betterConsole) {
+    console.log("Sent grades...");
+  }
 });
 //#endregion
 
