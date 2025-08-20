@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-async function scrapeGrades(username, password, environment) {
+async function scrapeGrades(username, password, environment, domain) {
     let browser;
     if (environment === "user") {
         browser = await puppeteer.launch({ headless: true });}
@@ -10,7 +10,7 @@ async function scrapeGrades(username, password, environment) {
         throw new Error("Environment in config.yaml not setup right.");
     }
     const page = await browser.newPage();
-    await page.goto('https://hac.mckinneyisd.net');
+    await page.goto('https://' + domain);
     await page.waitForSelector('#LogOnDetails_UserName');
     // above was written by ai. below is hand written
     
@@ -32,7 +32,7 @@ async function scrapeGrades(username, password, environment) {
     }
     const page2 = await browser.newPage();
     await page.close();
-    await page2.goto('https://hac.mckinneyisd.net/HomeAccess/Content/Student/Assignments.aspx');
+    await page2.goto('https://' + domain + '/HomeAccess/Content/Student/Assignments.aspx');
     const html = await page2.content();
     await browser.close();    
     return html;
@@ -47,7 +47,7 @@ async function scrapeSchedule(username, password, environment) {
         throw new Error("Environment in config.yaml not setup right.");
     }
     const page = await browser.newPage();
-    await page.goto('https://hac.mckinneyisd.net');
+    await page.goto('https://' + domain);
     await page.waitForSelector('#LogOnDetails_UserName');
     // above was written by ai. below is hand written
     try {
@@ -68,7 +68,7 @@ async function scrapeSchedule(username, password, environment) {
     }
     const page2 = await browser.newPage();
     await page.close();
-    await page2.goto('https://hac.mckinneyisd.net/HomeAccess/Content/Student/Classes.aspx');
+    await page2.goto('https://' + domain + '/HomeAccess/Content/Student/Classes.aspx');
     const html = await page2.content();
     await browser.close();    
     return html;

@@ -19,6 +19,7 @@ else if (LISTENING === "all") {
     LISTENING = '0.0.0.0'} 
 const betterConsole = config.alerts;
 let environment = config.environment;
+let hac = config.hacUrl;
 
 // #endregion 
 
@@ -27,7 +28,7 @@ app.get('/grades', async (req, res) => {
   let arrayThing = req.query;
   try {
     if (!arrayThing.username || !arrayThing.password || !environment) {throw new Error("crash.");}
-    res.send(await scrapeGrades(arrayThing.username, arrayThing.password, environment));
+    res.send(await scrapeGrades(arrayThing.username, arrayThing.password, environment, hac));
     if (betterConsole) {console.log("Sent grades...");}
   }
   catch (error) {res.send("Not correct way to send data")};
@@ -36,7 +37,7 @@ app.get('/schedule', async (req, res) => {
   let arrayThing = req.query;
   try {
     if (!arrayThing.username || !arrayThing.password || !environment) {throw new Error("crash.");}
-    res.send(await scrapeSchedule(arrayThing.username, arrayThing.password, environment));
+    res.send(await scrapeSchedule(arrayThing.username, arrayThing.password, environment, hac));
     if (betterConsole) { console.log("Sent schedule..");}
   }
   catch (error) {res.send("Not correct way to send data")};

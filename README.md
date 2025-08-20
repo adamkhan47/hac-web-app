@@ -12,8 +12,11 @@ clone repo, then run npm install and node server.js
 - tailwind css maybe?
 - certs support for https or http
 - nice app
-- able to talk to any hac api you want
 - integration with my what if grade calculator
 - more coming soon
 - multiple user support
 - encryption possibly
+
+# done
+- basic API app
+- able to talk to any hac api you want
