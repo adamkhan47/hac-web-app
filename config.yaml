@@ -7,6 +7,6 @@ listen: "local"
 
 alerts: true # better console.logs
 
-environment: "dev" # use dev if building and use "user" for normal use
+environment: "user" # use dev if building and use "user" for normal use
 
 hacUrl: "hac.mckinneyisd.net" # dont put https:// , only domain url.
