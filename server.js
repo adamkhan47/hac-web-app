@@ -19,7 +19,7 @@ else if (LISTENING === "all") {
     LISTENING = '0.0.0.0'} 
 const betterConsole = config.alerts;
 let environment = config.environment;
-let hac = config.hacUrl;
+let hac = config.hacUrl.trim();
 
 // #endregion 
 
