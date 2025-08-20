@@ -7,7 +7,8 @@ hac web app will be my first ever frontend and backend app that preferably is se
 
 # how to install
 - need node js
-clone repo, then run npm install and node server.js
+- clone repo 
+- then run npm install and node server.js
 
 # plans
 - tailwind css maybe?
@@ -15,6 +16,7 @@ clone repo, then run npm install and node server.js
 - integration with my what if grade calculator
 - encryption possibly
 - more coming soon
+- clean up data so its readable
 
 # done
 - basic API app
