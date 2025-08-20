@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const cleanGrades = require('./cleanData.js')
 
 async function scrapeGrades(username, password, environment, domain) {
     let browser;
@@ -35,7 +36,7 @@ async function scrapeGrades(username, password, environment, domain) {
     await page2.goto('https://' + domain + '/HomeAccess/Content/Student/Assignments.aspx');
     const html = await page2.content();
     await browser.close();    
-    return html;
+    return cleanGrades(html);
 }
 async function scrapeSchedule(username, password, environment) {
     let browser;
