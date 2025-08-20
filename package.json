@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
+    "html-to-text": "^9.0.5",
     "js-yaml": "^4.1.0",
     "puppeteer": "^24.16.2",
     "puppeteer-extra": "^3.3.6",
