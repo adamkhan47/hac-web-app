@@ -3,6 +3,7 @@ hac web app will be my first ever frontend and backend app that preferably is se
 
 # must read
 - this app stores login in plaintext, no end to end encryption
+- if you want to use scraper.js in your own hac api scraper, give credits :)
 
 # how to install
 - need node js
